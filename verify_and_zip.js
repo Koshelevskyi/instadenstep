@@ -1,0 +1,2 @@
+const fs=require('fs'),sharp=require('sharp'),cp=require('child_process');
+(async()=>{for(let i=1;i<=9;i++){const m=await sharp(`Posts/post_${String(i).padStart(2,'0')}.jpg`).metadata();if(m.width!==1080||m.height!==1350||m.format!=='jpeg')throw Error(`Bad card ${i}`)};for(const f of ['avatar.jpg','setka_3x3.jpg'])console.log(f,await sharp(f).metadata());cp.execFileSync('tar.exe',['-a','-c','-f','..\\instagram_stepanov_package.zip','*'],{stdio:'inherit'});console.log('Verified nine cards at 1080×1350 JPEG and created ZIP.');})();
